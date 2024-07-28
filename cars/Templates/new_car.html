@@ -4,8 +4,9 @@
 {% block content %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-
-        {{ new_car_form }}
+        <table>
+            {{ new_car_form.as_table }}
+        </table>
         <button type="submit">Enviar</button>
     </form>
 
@@ -21,7 +22,6 @@
         input[type="text"] {
             border: 0 2px solid #fff;
             border-radius: 4px;
-            margin-left: 10px;
             padding: 5px;
         }
 
@@ -34,6 +34,7 @@
             transition: background-color 0.3s ease-in-out;
             padding: 5px;
             width: 100px
+
         }
 
     </style>
