@@ -1,12 +1,40 @@
 {% extends 'base.html' %}
-<style>
-    
-</style>
+
 
 {% block content %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
         {{ new_car_form }}
+        <button type="submit">Enviar</button>
     </form>
+
+    <style>
+        form {
+            background-color: rgb(155, 155, 155);
+            color: black;
+            padding: 20px;
+            border: 0 2px solid #fff;
+            border-radius: 4px;
+        }
+
+        input[type="text"] {
+            border: 0 2px solid #fff;
+            border-radius: 4px;
+            margin-left: 10px;
+            padding: 5px;
+        }
+
+        button[type='submit'] {
+            border: black;
+            border-radius: 4px;
+            background-color: rgb(119, 0, 0);
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            padding: 5px;
+            width: 100px
+        }
+
+    </style>
 {% endblock %}
