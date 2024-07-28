@@ -1,0 +1,15 @@
+"""https://docs.djangoproject.com/en/5.0/topics/http/urls/"""
+from django.contrib import admin
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from cars.views import view_cars, home_views, new_car_views
+
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('cars/', view_cars, name='cars_list'),
+    path('', home_views, name='home_views'),
+    path('new_car', new_car_views, name='new_cars')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

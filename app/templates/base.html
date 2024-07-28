@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CARROS{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #95b9c5;
+            color: #fff;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #ccc;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: rgb(255, 215, 0);
+            color: #fff;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #000000;
+            color: #ccc;
+        }
+
+        nav ul li.active a {
+            background-color: #666;
+        }
+
+        body {
+            background-color: rgb( 0, 0, 0);
+        }
+
+        nav ul li a.active a:hover {
+            background-color: #999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home_views' %}">Home</a></li>
+                <li><a href="{% url 'cars_list' %}">Carros</a></li>
+                <li><a href="{% url 'new_cars' %}">Cadastrar Carros</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Rodegheri Multimarcas</p>
+    </footer>
+</body>
+</html>
+
