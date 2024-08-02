@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from cars.models import Car
 from cars.forms import  CarModelForm
+from django.views.generic import ListView, TemplateView
 # Create your views here.
 
 #FUNÇÃO DE VER CARROS
@@ -18,11 +19,9 @@ def view_cars(request):
         )
 
 #FUNÇÃO DA HOME
-def home_views(request):
-    return render(
-        request,
-        'home.html',
-    )
+class HomeViews(TemplateView):
+    template_name = 'home.html'
+
 
 #FUNÇÃO DE NOVOS CARROS
 def new_car_views(request):
