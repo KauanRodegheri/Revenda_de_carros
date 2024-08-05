@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from cars.views import view_cars, HomeViews, new_car_views
+from cars.views import *
 
 
 
@@ -11,5 +11,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cars/', view_cars, name='cars_list'),
     path('', HomeViews.as_view(), name='home_views'),
-    path('new_car', new_car_views, name='new_cars')
+    path('new_car', new_car_form, name='new_cars')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
