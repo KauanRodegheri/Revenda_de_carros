@@ -30,8 +30,8 @@ def new_car_views(request):
         if new_car_form.is_valid():
             new_car_form.save()
             return redirect('cars_list')
-
-    new_car_form = CarModelForm()
+    else:
+        new_car_form = CarModelForm()
     return render (
         request,
         'new_car.html',
