@@ -4,8 +4,19 @@
 <form method="POST">
     {% csrf_token %}
     <table>
-        {{ user_form }}
+        {{ user_form.as_table }}
     </table>
+    <button type="submit">CADASTRAR</button>
 </form>
+
+<style>
+
+form {
+    color: blueviolet;
+    padding: 40;
+}
+
+
+</style>
 
 {% endblock %}
