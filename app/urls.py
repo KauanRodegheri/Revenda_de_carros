@@ -3,8 +3,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from cars.views import *
-from usuarios.views import *
+from cars.views import *  #view do app cars
+from usuarios.views import * #view do app usuarios
 
 
 
