@@ -3,40 +3,38 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
 # Create your views here.
+class RegisterView(View):
 
-def register_view(request):
-    if request.method == 'POST':
+    def get(self, request):
+        user_form = UserCreationForm()
+        return render(request, 'register.html', {'user_form': user_form})
+
+    def post(self, request):
         user_form = UserCreationForm(request.POST)
         if user_form.is_valid():
             user_form.save()
             return redirect('login')
-    else:
-        user_form = UserCreationForm()
-    return render(
-        request,
-        'register.html',
-        {'user_form': user_form}
-    )
+        
+        return render(request, 'register.html', {'user_form': user_form})
 
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+class LoginView(View):
+
+    def get(self, request):
+        login_form = AuthenticationForm()
+        return render(request, 'login.html', {'login_form': login_form})
+    
+    def post(self, request):
+        usuario = request.POST['username']
+        senha = request.POST['password']
+        user = authenticate(request, username=usuario, password=senha)
         if user is not None:
             login(request, user)
             return redirect('cars_list')
         else:
-            return redirect('register')
+            return redirect('login')
 
-    else:
-        login_form = AuthenticationForm()
-    return render(
-        request,
-        'login.html',
-        {'login_form': login_form}
-    )
+class LogoutView(View):
 
-def logout_view(request):
-    logout(request)
-    return redirect('cars_list')
+    def get(self, request):
+        logout(request)
+        return redirect('cars_list')

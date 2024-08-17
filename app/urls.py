@@ -11,9 +11,9 @@ from usuarios.views import * #view do app usuarios
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('cars/', CarsView.as_view(), name='cars_list'),
-    path('register/', register_view, name='register'),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('', HomeViews.as_view(), name='home_views'),
     path('new_car', NewCarView.as_view(), name='new_cars')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
