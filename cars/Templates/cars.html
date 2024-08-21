@@ -111,7 +111,7 @@
       {% for car in cars %}
         <div class="car-card">
           {% if car.image %}
-            <img src="/media/{{ car.image }}" alt="{{ car.model }} - {{ car.brand }}">
+            <img src="{{ car.image.url }}" alt="{{ car.model }} - {{ car.brand }}">
           {% else %}
             <h1>sem imagem</h1>
           {% endif %}

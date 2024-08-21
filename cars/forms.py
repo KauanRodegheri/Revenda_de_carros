@@ -16,8 +16,8 @@ class CarModelForm(forms.ModelForm):
         
     def clean_factory_year(self):
         factory_year = self.cleaned_data.get('factory_year')
-        if factory_year > 2025 or factory_year < 1975:
-            self.add_error('factory_year', 'Adicione um ano valido com 4 digitos')
+        if factory_year > 2025 or factory_year < 1940:
+            self.add_error('factory_year', 'Adicione um ano valido')
         else:
             return int(factory_year)
     

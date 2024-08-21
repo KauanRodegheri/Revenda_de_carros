@@ -3,20 +3,20 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.views import View
 # Create your views here.
-class RegisterView(View):
 
+class RegisterView(View):
+     
     def get(self, request):
         user_form = UserCreationForm()
         return render(request, 'register.html', {'user_form': user_form})
-
+    
     def post(self, request):
         user_form = UserCreationForm(request.POST)
         if user_form.is_valid():
             user_form.save()
             return redirect('login')
-        
         return render(request, 'register.html', {'user_form': user_form})
-
+    
 class LoginView(View):
 
     def get(self, request):
@@ -30,11 +30,11 @@ class LoginView(View):
         if user is not None:
             login(request, user)
             return redirect('cars_list')
-        else:
-            return redirect('login')
-
+        
+        return redirect('login')
+    
 class LogoutView(View):
-
+    
     def get(self, request):
         logout(request)
         return redirect('cars_list')

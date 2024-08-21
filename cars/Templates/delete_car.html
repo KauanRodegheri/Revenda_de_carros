@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <h3>Deseja eliminar o carro "{{ object.model }}"</h3>
+    <input 
+        value="submit"
+        type="submit"
+    onclick="location.href='{% url 'delete_car' object.id %}'">
+    <input
+        value="cancel"
+        type="button"
+        onclick="location.href='{% url 'cars_list' %}'">
+
+</form>
+{% endblock %}

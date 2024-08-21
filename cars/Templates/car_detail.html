@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<html>
+    <body>
+        <div class="car-grid">
+            <img src="{{ object.image.url }}" alt="{{ object.model }}-{{ object.brand }}">
+            <h2>{{ object.model }}  {{ object.brand }}</h2>
+            <p>Ano de fabricação: {{ object.factory_year }}</p>
+            <p><strong>Ano do Modelo: </strong>{{ object.model_year }}</p>
+            <p><strong>Valor: </strong>{{ object.value }}</p>
+            <p><a href="{% url 'delete_car' object.id %}">Eliminar</a></p>
+        </div>
+    </body>
+</html>
+
+<style>
+    .car-grid {
+        justify-content: flex-end;
+    }
+</style>
+
+{% endblock %}

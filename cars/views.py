@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from cars.models import Car
 from cars.forms import  CarModelForm
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, CreateView, DetailView, DeleteView,UpdateView
 from django.views import View
 
 # Create your views here.
@@ -25,6 +25,7 @@ class CarsView(ListView):
         search = self.request.GET.get('search')
         if search:
             cars = cars.filter(brand__nome__icontains=search)
+        
         return cars
 
 
@@ -33,26 +34,22 @@ class HomeViews(TemplateView):
     template_name = 'home.html'
 
 #FUNÇÃO DE NOVOS CARROS
-class NewCarView(View):
 
-    def get(self, request):
-        new_car_form = CarModelForm()
-        return render(
-            request,
-            'new_car.html',
-            {'new_car_form': new_car_form}
-        )
-    
-    def post(self, request):
-        new_car_form = CarModelForm(request.POST, request.FILES)
-        if new_car_form.is_valid():
-            new_car_form.save()
-            return redirect('cars_list')
-        
-        return render(
-            request,
-            'new_car.html',
-            {'new_car_form': new_car_form}
-        )
+class NewCarView(CreateView):
+    model = Car
+    form_class = CarModelForm
+    template_name  = 'new_car.html'
+    success_url = '/cars/'
+
+class CarDetailView(DetailView):
+    model = Car
+    template_name = 'car_detail.html'
+
+class CarDeleteView(DeleteView):
+    model = Car
+    template_name = 'delete_car.html'
+    success_url = '/cars/'
+
+
 
         
