@@ -5,6 +5,7 @@ from cars.models import Car
 from cars.forms import  CarModelForm
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, DeleteView,UpdateView
 from django.views import View
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -24,7 +25,7 @@ class CarsView(ListView):
         cars = super().get_queryset().order_by('brand__nome')
         search = self.request.GET.get('search')
         if search:
-            cars = cars.filter(brand__nome__icontains=search)
+            cars = cars.filter(model__icontains=search).order_by('brand__nome')
         
         return cars
 
@@ -38,8 +39,8 @@ class HomeViews(TemplateView):
 class NewCarView(CreateView):
     model = Car
     form_class = CarModelForm
-    template_name  = 'new_car.html'
-    success_url = '/cars/'
+    template_name = 'new_car.html'
+    success_url = reverse_lazy('cars_list')
 
 class CarDetailView(DetailView):
     model = Car
@@ -48,7 +49,14 @@ class CarDetailView(DetailView):
 class CarDeleteView(DeleteView):
     model = Car
     template_name = 'delete_car.html'
-    success_url = '/cars/'
+    success_url = reverse_lazy('cars_list')
+
+class CarUpdateView(UpdateView):
+    model = Car
+    form_class = CarModelForm
+    template_name = 'new_car.html'
+    success_url = reverse_lazy('cars_list')
+
 
 
 

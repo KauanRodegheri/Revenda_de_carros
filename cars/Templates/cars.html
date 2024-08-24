@@ -109,7 +109,7 @@
     
     {% if cars %}
       {% for car in cars %}
-        <div class="car-card">
+        <div class="car-card" type="button" onclick="location.href='{% url 'car_detail' car.id %}'">
           {% if car.image %}
             <img src="{{ car.image.url }}" alt="{{ car.model }} - {{ car.brand }}">
           {% else %}

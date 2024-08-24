@@ -5,19 +5,70 @@
 <html>
     <body>
         <div class="car-grid">
+            {% if object.image %}
             <img src="{{ object.image.url }}" alt="{{ object.model }}-{{ object.brand }}">
-            <h2>{{ object.model }}  {{ object.brand }}</h2>
-            <p>Ano de fabricação: {{ object.factory_year }}</p>
-            <p><strong>Ano do Modelo: </strong>{{ object.model_year }}</p>
-            <p><strong>Valor: </strong>{{ object.value }}</p>
-            <p><a href="{% url 'delete_car' object.id %}">Eliminar</a></p>
+            {% else %}
+            <img src="" alt="{{ object.model }}-{{  object.brand }}">
+            {% endif %}
+            <div class="car-card">
+                <h2>{{ object.model }}  {{ object.brand }}</h2>
+                <p><strong>Ano de fabricação: </strong>{{ object.factory_year }}</p>
+                <p><strong>Ano do Modelo: </strong>{{ object.model_year }}</p>
+                <p><strong>Valor: R$</strong>{{ object.value }}0</p>
+                <p><strong>Proprietário: </strong>{{ object.proprietario }} </p>
+                {% if user.is_authenticated %}
+                    <input
+                        type="button"
+                        value="Excluir"
+                        onclick="location.href='{% url 'delete_car' object.id %}'">
+                    <input
+                        type="button"
+                        value="Atualizar"
+                        onclick="location.href='{% url 'car_update' object.id %}'">
+                {% endif %}
+            </div>
         </div>
+        <button type="button" onclick="location.href='{% url 'cars_list' %}'">Voltar</button>
     </body>
 </html>
 
 <style>
     .car-grid {
-        justify-content: flex-end;
+        margin-left: 500px;
+        display: grid;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+
+    .car-grid img {
+        width: 55%;
+
+    }
+
+    .car-card {
+        background-color: rgb(119, 1, 1);
+        width: 55%;
+        text-align: center;
+    }
+
+    .car-card h2 {
+        color: white;
+    }
+
+    .car-card input {
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 252, 252);
+        height: 50px;
+        width: 125px;
+    }
+
+    .car-card p strong {
+        color: rgb(0, 0, 0);
+    }
+
+    .car-card p {
+        color: #fff;
     }
 </style>
 

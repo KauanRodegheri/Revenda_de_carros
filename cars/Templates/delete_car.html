@@ -5,11 +5,11 @@
     {% csrf_token %}
     <h3>Deseja eliminar o carro "{{ object.model }}"</h3>
     <input 
-        value="submit"
+        value="Excluir"
         type="submit"
     onclick="location.href='{% url 'delete_car' object.id %}'">
     <input
-        value="cancel"
+        value="cancelar"
         type="button"
         onclick="location.href='{% url 'cars_list' %}'">
 

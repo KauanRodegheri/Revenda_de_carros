@@ -1,6 +1,6 @@
 from django import forms
 from cars.models import Car
-
+import re
     
 class CarModelForm(forms.ModelForm):
     class Meta:
@@ -21,4 +21,12 @@ class CarModelForm(forms.ModelForm):
         else:
             return int(factory_year)
     
+    def clean_proprietario(self):
+        proprietario = self.cleaned_data.get('proprietario')
+        print(proprietario)
+        regex = r'\b[A-Za-z ]{1,150}\b'
+        if re.fullmatch(regex, proprietario):
+            return proprietario
+        else:
+            self.add_error('proprietario', 'insira somente letras e espaços')
     
