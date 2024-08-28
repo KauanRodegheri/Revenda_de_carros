@@ -7,9 +7,11 @@
         <table>
             {{ form.as_table }}
         </table>
-        <button type="submit">Enviar</button>
+        <button type="submit">Salvar Alterações</button>
     </form>
-
+    <button
+    class="btn btn-danger"
+    onclick="location.href='{% url 'delete_car' pk=object.id %}'">Deletar carro</button>
     <style>
         form {
             background-color: rgb(155, 155, 155);
@@ -17,6 +19,12 @@
             padding: 20px;
             border: 0 2px solid #fff;
             border-radius: 4px;
+        }
+
+        input[type="text"] {
+            border: 0 2px solid #fff;
+            border-radius: 4px;
+            padding: 5px;
         }
 
         button[type='submit'] {

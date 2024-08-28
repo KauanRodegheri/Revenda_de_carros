@@ -35,17 +35,21 @@ class HomeViews(TemplateView):
     template_name = 'home.html'
 
 #FUNÇÃO DE NOVOS CARROS
-
+#Criando Carros
 class NewCarView(CreateView):
     model = Car
     form_class = CarModelForm
     template_name = 'new_car.html'
-    success_url = reverse_lazy('cars_list')
+    
+    def get_success_url(self) -> str:
+        return reverse_lazy('car_detail', kwargs={'pk': self.object.id})
 
+#Mostrando os detalhes de cada carro
 class CarDetailView(DetailView):
     model = Car
     template_name = 'car_detail.html'
 
+#deletando o carro escolhido atraves do ID ou PK
 class CarDeleteView(DeleteView):
     model = Car
     template_name = 'delete_car.html'
@@ -54,8 +58,14 @@ class CarDeleteView(DeleteView):
 class CarUpdateView(UpdateView):
     model = Car
     form_class = CarModelForm
-    template_name = 'new_car.html'
-    success_url = reverse_lazy('cars_list')
+    template_name = 'car_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('car_detail', kwargs={'pk': self.object.id})
+
+
+
+
 
 
 

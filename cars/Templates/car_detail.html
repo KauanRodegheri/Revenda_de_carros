@@ -8,10 +8,10 @@
             {% if object.image %}
             <img src="{{ object.image.url }}" alt="{{ object.model }}-{{ object.brand }}">
             {% else %}
-            <img src="" alt="{{ object.model }}-{{  object.brand }}">
+            <img src="" alt="{{ object.brand }}-{{  object.model }}">
             {% endif %}
             <div class="car-card">
-                <h2>{{ object.model }}  {{ object.brand }}</h2>
+                <h2>{{ object.brand }}  {{ object.model }}</h2>
                 <p><strong>Ano de fabricação: </strong>{{ object.factory_year }}</p>
                 <p><strong>Ano do Modelo: </strong>{{ object.model_year }}</p>
                 <p><strong>Valor: R$</strong>{{ object.value }}0</p>
@@ -20,11 +20,11 @@
                     <input
                         type="button"
                         value="Excluir"
-                        onclick="location.href='{% url 'delete_car' object.id %}'">
+                        onclick="location.href='{% url 'delete_car' pk=object.id %}'">
                     <input
                         type="button"
                         value="Atualizar"
-                        onclick="location.href='{% url 'car_update' object.id %}'">
+                        onclick="location.href='{% url 'car_update' pk=object.id %}'">
                 {% endif %}
             </div>
         </div>
@@ -34,21 +34,25 @@
 
 <style>
     .car-grid {
-        margin-left: 500px;
+        
         display: grid;
-        margin: 0 auto;
+        margin: 2 auto;
         padding: 20px;
+        border-radius: 2px;
+
     }
     
 
     .car-grid img {
-        width: 55%;
+        width: 500px;
+        height: 350px;
 
     }
 
     .car-card {
         background-color: rgb(119, 1, 1);
-        width: 55%;
+        width: 500px;
+        height: 260px;
         text-align: center;
     }
 

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,20 +10,22 @@
         <title>{% block title %}Home{% endblock %}</title>
     </head>
     <body>
-        <h1>Rodegheri Multimarcas</h3>
+        <img src="static/logo_car.png" alt="logo_car">
     </body>
 </div>
 </html>
 
 <style>
-    body{
-        background-color: rgb(0, 0, 0);
-    }
-
     h1 {
         color: rgb( 255, 215, 0);
         position: fixed;
         margin: 500px;
+    }
+
+    img {
+        padding: 93px;
+        size: 150%;
+        margin-left: 400px;
     }
 </style>
 {% endblock %}

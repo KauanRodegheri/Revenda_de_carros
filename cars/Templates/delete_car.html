@@ -6,12 +6,11 @@
     <h3>Deseja eliminar o carro "{{ object.model }}"</h3>
     <input 
         value="Excluir"
-        type="submit"
-    onclick="location.href='{% url 'delete_car' object.id %}'">
+        type="submit">
     <input
         value="cancelar"
         type="button"
-        onclick="location.href='{% url 'cars_list' %}'">
+        onclick="location.href='{% url 'car_detail' object.id%}'">
 
 </form>
 {% endblock %}

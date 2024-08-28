@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -69,6 +70,17 @@
         nav ul li a.active a:hover {
             background-color: #999;
         }
+
+        nav ul li strong {
+            color: #030303;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 15px;
+            transition: all 0.3s ease;
+
+        }
+
+
     </style>
 </head>
 <body>
@@ -76,7 +88,7 @@
         <nav>
             <ul>
                 {% if user.is_authenticated %}
-                <li>Olá, {{ user.username }}</li>
+                <li><strong>Olá, {{ user.username }}</strong></li>
                 <li><a href="{% url 'home_views' %}">Home</a></li>
                 <li><a href="{% url 'cars_list' %}">Carros</a></li>
                 <li><a href="{% url 'new_cars' %}">Cadastrar Carros</a></li>
