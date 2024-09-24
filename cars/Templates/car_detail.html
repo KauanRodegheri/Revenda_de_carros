@@ -1,79 +1,100 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-
-<html>
-    <body>
-        <div class="car-grid">
-            {% if object.image %}
-            <img src="{{ object.image.url }}" alt="{{ object.model }}-{{ object.brand }}">
-            {% else %}
-            <img src="" alt="{{ object.brand }}-{{  object.model }}">
-            {% endif %}
-            <div class="car-card">
-                <h2>{{ object.brand }}  {{ object.model }}</h2>
-                <p><strong>Ano de fabricação: </strong>{{ object.factory_year }}</p>
-                <p><strong>Ano do Modelo: </strong>{{ object.model_year }}</p>
-                <p><strong>Valor: R$</strong>{{ object.value }}0</p>
-                <p><strong>Proprietário: </strong>{{ object.proprietario }} </p>
-                {% if user.is_authenticated %}
-                    <input
-                        type="button"
-                        value="Excluir"
-                        onclick="location.href='{% url 'delete_car' pk=object.id %}'">
-                    <input
-                        type="button"
-                        value="Atualizar"
-                        onclick="location.href='{% url 'car_update' pk=object.id %}'">
-                {% endif %}
-            </div>
-        </div>
-        <button type="button" onclick="location.href='{% url 'cars_list' %}'">Voltar</button>
-    </body>
-</html>
-
-<style>
-    .car-grid {
-        
-        display: grid;
-        margin: 2 auto;
-        padding: 20px;
-        border-radius: 2px;
-
-    }
-    
-
-    .car-grid img {
-        width: 500px;
-        height: 350px;
-
-    }
-
+  <style>
     .car-card {
-        background-color: rgb(119, 1, 1);
-        width: 500px;
-        height: 260px;
-        text-align: center;
+      background-color: rgb(119, 0, 1);
+      color: black;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      transition: all 0.3s ease;
+      max-width: 500px;
+      margin: 20px auto 0;
+      margin-bottom: 20px;
+    }
+
+    .car-card:hover {
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
     }
 
     .car-card h2 {
-        color: white;
-    }
-
-    .car-card input {
-        background-color: rgb(0, 0, 0);
-        color: rgb(255, 252, 252);
-        height: 50px;
-        width: 125px;
-    }
-
-    .car-card p strong {
-        color: rgb(0, 0, 0);
+      font-size: 1.5rem;
+      margin: 10px;
     }
 
     .car-card p {
-        color: #fff;
+      font-size: 1rem;
+      margin-bottom: 10px;
     }
-</style>
+
+    .buttons-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #0096c7;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+      margin: 0 10px;
+    }
+
+    .btn:hover {
+      background-color: #108eb8;
+    }
+
+    .btn-danger {
+      background-color: #d9534f;
+      text-decoration: none !important;
+    }
+
+    .btn-danger:hover {
+      background-color: #d2221c;
+    }
+
+    .error-message {
+      color: #d9534f;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    a {
+      text-decoration: none !important;
+    }
+    
+
+  </style>
+  <div class="car-card">
+      <img src="{{ object.image.url }}" alt="{{ object.model }} - {{ object.brand }}">
+      <h2>{{ object.brand }} {{ object.model }}</h2>
+      <p><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
+      <p><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
+      <p><strong>Preço:</strong> R$ {{ object.value }}</p>
+      <p><strong>Proprietario:</strong> {{object.proprietario}}</p>
+      {% if object.bio %}<p><strong>Bio:</strong> {{object.bio}}</p>{%endif%}
+  </div>
+{% if user.is_authenticated %}
+<a href="{% url 'delete_car' object.id %}" class="btn btn-danger">Excluir</a>
+<a href="{% url 'car_update' object.id %}" class="btn btn-primary">Atualizar</a>
+{% endif %}
+<a href="{% url 'cars_list' %}" class="btn btn-primary" name="voltar">Voltar</a>
 
 {% endblock %}
