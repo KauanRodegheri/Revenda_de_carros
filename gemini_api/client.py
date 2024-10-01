@@ -10,5 +10,3 @@ def get_car_ai_bio(model, brand, year):
     return response.text
   
 
-
-print(get_car_ai_bio('fiesta','ford','2020'))
