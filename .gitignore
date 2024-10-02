@@ -3,7 +3,12 @@
 ##Pasta de Anotações txt
 Anotações
 
+#BD
 db.sqlite3
+
+#Fotos
+media
+static
 
 ### Django ###
 *.log
