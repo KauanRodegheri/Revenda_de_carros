@@ -26,12 +26,15 @@ class LoginView(View):
     def post(self, request):
         usuario = request.POST['username']
         senha = request.POST['password']
-        user = authenticate(request, username=usuario, password=senha)
-        if user is not None:
-            login(request, user)
-            return redirect('cars_list')
-        
-        return redirect('login')
+        login_form = AuthenticationForm(request, data=request.POST)
+        if login_form.is_valid():
+            user = authenticate(request, username=usuario, password=senha)
+            if user is not None:
+                login(request, user)
+                return redirect('cars_list')
+       
+        return render(request, 'login.html', {'login_form': login_form})
+    
     
 class LogoutView(View):
     

@@ -27,7 +27,7 @@ class CarsView(ListView):
         search = self.request.GET.get('search')
         if search:
             cars = cars.filter(model__icontains=search).order_by('brand__nome')
-        
+           
         return cars
 
 
@@ -67,6 +67,8 @@ class CarUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('car_detail', kwargs={'pk': self.object.id})
+
+
 
 
 

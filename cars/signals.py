@@ -4,6 +4,7 @@ from django.db.models import Sum
 from cars.models import Car, CarInventory
 from gemini_api.client import get_car_ai_bio
 
+
 def car_inventory_update():
     cars_count = Car.objects.all().count()
     cars_value = Car.objects.aggregate(total_value=Sum('value'))['total_value']
@@ -28,6 +29,7 @@ def car_bio(sender, instance, **kwargs):
             brand = instance.brand,
             year = instance.model_year
         )
+    
 
 
 

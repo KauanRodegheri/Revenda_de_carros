@@ -23,7 +23,6 @@ class CarModelForm(forms.ModelForm):
     
     def clean_proprietario(self):
         proprietario = self.cleaned_data.get('proprietario')
-        print(proprietario)
         regex = r'\b[A-Za-z ã]{1,150}\b'
         if re.fullmatch(regex, proprietario):
             return proprietario.title()

@@ -94,8 +94,9 @@
       {% if object.bio %}<p><strong>Bio:</strong> {{object.bio}}</p>{%endif%}
   </div>
 {% if user.is_authenticated %}
-<a href="{% url 'delete_car' object.id %}" class="btn btn-danger">Excluir</a>
-<a href="{% url 'car_update' object.id %}" class="btn btn-primary">Atualizar</a>
+  <a href="{% url 'delete_car' object.id %}" class="btn btn-danger">Excluir</a>
+  <a href="{% url 'car_update' object.id %}" class="btn btn-primary">Atualizar</a>
+
 {% endif %}
 <a href="{% url 'cars_list' %}" class="btn btn-primary" name="voltar">Voltar</a>
 
