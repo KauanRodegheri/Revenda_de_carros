@@ -3,29 +3,59 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<div>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Home{% endblock %}</title>
-    </head>
-    <body>
-        <img src="static/logo_car.png" alt="logo_car">
-    </body>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Home{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: rgb(155, 155, 155);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: rgb(255, 215, 0);
+            margin: 20px;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+
+        /* Media Queries para responsividade */
+        @media (max-width: 768px) {
+            img {
+                padding: 20px;
+                margin-left: 0;
+            }
+
+            h1 {
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            img {
+                padding: 10px;
+                margin-left: 0;
+            }
+
+            h1 {
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="{% static 'logo_car.png' %}" alt="logo_car">
+</body>
 </html>
-
-<style>
-    h1 {
-        color: rgb( 255, 215, 0);
-        position: fixed;
-        margin: 500px;
-    }
-
-    img {
-        padding: 93px;
-        size: 150%;
-        margin-left: 400px;
-    }
-</style>
 {% endblock %}
